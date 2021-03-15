@@ -1,0 +1,519 @@
+// Body
+$mobile-device-break-point: "only screen and (min-width: 300px) and (max-width: 960px)";
+
+$total-width1: 1100px;
+$left-width1: 320px;
+$mid-width1: 780px;
+
+$total-width2: 1000px;
+$left-width2: 300px;
+$mid-width2: 700px;
+
+$left-width3: 200px;
+
+$wide-diff: 100px;
+
+$nav-bar-height: 56px;
+$page-title-height: 48px;
+$quick-topic-height: 58px;
+
+$nav-z-index: 13;
+$modal-z-index: 14;
+$messenger-z-index: 15;
+$mask-z-index: 16;
+
+$ipfs-color: #36989A;
+
+// font color for titles, such as thread title and page title
+$placeholder-font-color: #8C97AD;
+$placeholder-color: #8C97AD;
+$post-action-color: #606878;
+//
+$font-color-contrast: #ffffff;
+// actually the theme colour
+$theme-color: #3d72de;
+
+$theme-color-transparent: rgba(119, 150, 222, .1);
+// error message color
+$error-color: #de673f;
+
+$border-width: 1px;
+$border-style: solid;
+
+// global border radius
+$border-radius1: 8px;
+// border when focus on element, such as quick reply, rich text editor, thread fold lines
+$border-focus: $theme-color;
+// global box shadow, such as nav-bar
+$box-shadow: 0 2px 8px 0 var(--box-shadow-color);
+// box shadow for popup
+$box-shadow-popup: 0 2px 5px 0 rgba(100, 100, 100, 0.3);
+// box shadow when focus on editable element, such as quick reply
+$box-shadow-focus: 0 0 0 2px rgba(24, 144, 255, 0.2);
+
+$popup-primary-btn-color: rgba(248,248,248,1);
+$popup-primary-btn-shadow: 0px 2px 4px 0px rgba(0,0,0,0.09);
+
+$mask-color: rgba(0, 0, 0, .7);
+
+$title-weight: 500;
+
+$avatar-size1: 30px;
+$avatar-size2: 40px;
+$avatar-size3: 50px;
+$logo-size: 36px;
+
+// line height for titles, such as thread title and page title
+$title-line-height: 28px;
+$secondary-line-height: 1.7rem;
+$content-line-height: 1.6rem;
+$description-line-height: 26px;
+$upload-desc-line-height:1.3rem;
+$category-line-height: 1.6rem;
+$input-line-height: 34px;
+
+$input-height: 40px;
+
+$modal-input-height: 50px;
+
+// the base font size, assigned to html, shall not be used in any other elements
+$root-size: 15px;
+//
+// $font-size06: 0.6rem;
+$font-size0: 0.8rem;
+$font-size1: 1rem;
+$font-size1-line-height: 1.6rem;
+//
+$upload-desc-font-size: 0.9rem;
+//
+$font-size2: 1.1rem;
+//
+$font-size3: 1.2rem;
+$font-size3-line-height: 1.75rem;
+// font size for titles, such as thread title and page title
+$font-size4: 1.3rem;
+$font-size4-line-height: 2rem;
+
+$font-size5: 1.6rem;
+$font-size5-line-height:2.4rem;
+
+$font-size14: 2.4rem;
+$font-size14-line-height: 3.1rem; 
+
+$font-size20: 3.0rem;
+$font-size20-line-height: 3.6rem;
+
+$mobile-thread-username-font-size: 0.9rem;
+$mobile-thread-title-font-size: 1.1rem;
+$mobile-thread-category-time-size: 0.9rem;
+$mobile-thread-category-font-size: 0.9rem;
+$mobile-thread-content-font-size: 1.0rem;
+$mobile-thread-like-font-size: 0.9rem;
+
+$member-list-time-font-size: 0.9rem;
+$member-list-name-font-size: 1.067rem;
+
+$home-page-title: 1.8rem;
+$home-page-desc: 1.2rem;
+
+$home-page-title-mobile: 1.4rem;
+$home-page-desc-mobile: 1.1rem;
+
+$common-btn-height: 40px;
+
+@mixin transition($properties) {
+    transition-property: #{$properties};
+    transition-duration: .5s;
+    transition-timing-function: ease;
+}
+
+@mixin sticky($top: 0) {
+    position: sticky;
+    top: $top;
+}
+
+@mixin capitalize() {
+    // text-transform: capitalize;
+    display: inline-block;
+    &::first-letter {
+        text-transform: uppercase;
+        user-select: text;
+    }
+}
+
+@mixin clear_after() {
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+@mixin username_font() {
+    color: var(--font-color1);
+    font-size: $font-size1;
+    font-weight: $title-weight;
+}
+
+@mixin mobile_thread_username_font() {
+    color: var(--font-color1);
+    font-size: $mobile-thread-username-font-size;
+    font-weight: $title-weight;
+}
+
+@mixin title_font() {
+    font-size: $font-size4;
+    font-weight: $title-weight;
+    line-height: $title-line-height;
+    color: var(--font-color1);
+}
+
+@mixin  popup_title_font() {
+    font-size: $font-size4;
+    font-weight: $title-weight;
+    line-height: $font-size4-line-height;
+    color: var(--font-color1);
+}
+
+@mixin mobile_thread_title_font() {
+    font-size: $mobile-thread-title-font-size;
+    font-weight: $title-weight;
+    line-height: $title-line-height;
+    color: var(--font-color1);
+    word-break: break-word;
+}
+
+@mixin secondary_title_font() {
+    @include capitalize;
+    font-weight: $title-weight;
+    color: var(--font-color1);
+    font-size: $font-size2;
+    line-height: $secondary-line-height;
+}
+
+@mixin content_font() {
+    font-size: $font-size1;
+    color: var(--font-color1);
+    line-height: $content-line-height;
+}
+
+@mixin mobile_thread_content-font() {
+    font-size: $mobile-thread-content-font-size;
+    color: var(--font-color1);
+    line-height: $content-line-height;
+}
+
+@mixin deleted_font() {
+    font-size: $font-size1;
+    color: var(--font-color3);
+}
+
+@mixin wrap_words() {
+    max-width: 100%;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+@mixin description_font() {
+    font-size: $font-size1;
+    color: var(--desc-color);
+    line-height: $description-line-height;
+}
+
+@mixin upload_desc_font() {
+    font-size: $upload-desc-font-size;
+    color: var(--desc-color);
+    line-height: $upload-desc-line-height;
+}
+
+@mixin info_font() {
+    font-size: $font-size1;
+    color: var(--desc-color);
+}
+
+@mixin mobile_thread_category_font() {
+    font-size: $mobile-thread-category-font-size;
+    color: var(--font-color2);
+}
+
+@mixin mobile_thread_time_font() {
+    font-size: $mobile-thread-category-time-size;
+    color: var(--font-color2);
+}
+
+@mixin notice_font() {
+    font-size: $font-size1;
+    font-style: italic;
+    color: $theme-color;
+}
+
+@mixin error_font() {
+    font-size: $font-size1;
+    font-style: italic;
+    color: $error-color;
+}
+
+@mixin category_font() {
+    color: var(--category-color);
+    font-size: $font-size1;
+    // @include capitalize;
+}
+
+@mixin link_hover() {
+    &:hover {
+        background-color: var(--hover-bg);
+        color: $theme-color;
+    }
+
+    &.hover {
+        background-color: var(--active-bg);
+        color: $theme-color;
+    }
+}
+
+@mixin placeholder_font() {
+    &::placeholder {
+        font-size: $font-size1;
+        color: var(--desc-color);
+    }
+}
+
+@mixin button_font() {
+    cursor: pointer;
+    color: var(--font-color2);
+    font-size: $font-size1;
+    @include capitalize;
+
+    span {
+        display: inline-block;
+    }
+}
+
+@mixin form_title() {
+    @include title_font;
+    padding-bottom: var(--p5);
+    border-bottom: $border-width $border-style var(--border-color5);
+}
+
+@mixin form_label() {
+    @include secondary_title_font;
+    clear: both;
+    padding: var(--p5) 0 var(--p3);
+}
+
+@mixin form_item() {
+    display: flex;
+
+    @media (max-width: 1000px) {
+        display: block;
+    }
+}
+
+@mixin input_style() {
+    height: 50px;
+    background-color: transparent;
+    padding: 0 16px;
+}
+
+@mixin no_data() {
+    padding: var(--p6) 0;
+    text-align: center;
+    @include info_font;
+
+    img {
+        margin-bottom: var(--p4);
+    }
+}
+
+@mixin input() {
+    background-color: var(--navbar-bg);
+    border-radius: $border-radius1;
+    //border: $border-width $border-style var(--border-color3);
+    cursor: pointer;
+}
+
+@mixin mask() {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $modal-z-index;
+    height: 100%;
+    background-color: $mask-color;
+}
+
+@mixin img_placeholder() {
+    animation: img-placeholder 1.5s ease infinite;
+    background: linear-gradient(90deg, rgb(230, 230, 230), rgb(245, 245, 245), rgb(230, 230, 230));
+    background-size: 200%;
+}
+
+@mixin logo_placeholder() {
+    width: 36px;
+    height: 36px;
+    background-color: $theme-color;
+    border-radius: 8px;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 9px;
+}
+
+@mixin media_holder() {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //background: linear-gradient(60deg, rgb(217, 217, 217), rgb(255, 255, 255), rgb(217, 217, 217));
+    background-color: #f8f8f8;
+    border-radius: $border-radius1;
+    cursor: pointer;
+
+    .desc {
+        @include description_font();
+        color: #606878;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &:hover {
+        background-color: rgb(235, 235, 235);
+    }
+
+    &.displaying {
+        background-color: transparent;
+        .camera, .desc {
+            display: none;
+        }
+    }
+}
+
+@mixin modal_flexbox() {
+    padding: 0 var(--p6);
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin load_more() {
+    color: $theme-color;
+    text-decoration: underline;
+    font-size: $upload-desc-font-size;
+    cursor: pointer;
+}
+
+@mixin modal_title_box {
+    @include title_font;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    padding-bottom: var(--p5);
+    border-bottom: $border-width $border-style var(--border-color5);
+
+    .ant-btn-link {
+        font-weight: 700;
+    }
+}
+
+@mixin form_table {
+    tr {
+            
+        td {
+            display: table-cell;
+            padding-top: var(--p6);
+
+            &:first-child {
+                padding-right: var(--p8);
+                font-weight: bold;
+                @include capitalize;
+                display: table-cell;
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: $border-radius1;
+            }
+        }
+    }
+}
+
+@mixin paypal_block() {
+    margin-top: var(--p6);
+    padding-top: var(--p6);
+    border-top: $border-width $border-style var(--border-color2);
+
+    .desc {
+        margin-top: var(--p4);
+        @include description_font;
+    }
+}
+
+@mixin link_preview() {
+    .link-preview {
+        $w: 100px;
+        
+        width: auto;
+        padding: var(--p4);
+        display: flex;
+        flex-direction: row;
+        border: $border-width $border-style var(--border-color2);
+        border-radius: $border-radius1 * 2;
+        overflow: hidden;
+        background-color:var(--group-bg);
+        margin-top: var(--p2);
+
+        div:first-child {
+            width: $w;
+            height: $w;
+            margin-right: var(--p4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-shrink: 0;
+
+            img {
+                max-height: 100%;
+            }
+        }
+
+        .img-loading {
+            @include img_placeholder;
+        }
+
+        div:last-child {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            color: var(--font-color1);
+
+            p:first-child {
+                @include title_font;
+            }
+            p:last-child {
+                @include description_font;
+            }
+        }
+    }
+}
+
+// animations
+@keyframes img-placeholder {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes spin { 
+    100% { transform:rotate(360deg); } 
+}

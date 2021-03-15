@@ -1,0 +1,41 @@
+{
+	"authHost": "http://apicore",
+	"authEndpoint": "/custom/broadcast/auth",
+	"clients": [
+
+	],
+	"database": "redis",
+	"databaseConfig": {
+		"redis": {
+			"host":"redis",
+			"port":6379
+		}
+	},
+	"devMode": true,
+	"host": null,
+	"port": "6001",
+	"protocol": "http",
+	"socketio": {
+		"cors": {
+			"origin": "https://sa.everforo.com",
+			"credentials": true,
+			"methods": "GET,PUT,POST,OPTIONS",
+			"allowedHeaders": "Origin,Content-Type,X-Auth-Token,X-Requested-With,Accept,Authorization,X-CSRF-TOKEN,X-Socket-Id"
+		}
+	},
+	"secureOptions": 67108864,
+	"sslCertPath": "",
+	"sslKeyPath": "",
+	"sslCertChainPath": "",
+	"sslPassphrase": "",
+	"subscribers": {
+		"http": true,
+		"redis": true
+	},
+	"apiOriginAllow": {
+		"allowCors": true,
+		"allowOrigin": "https://sa.everforo.com",
+		"allowMethods": "POST,GET,OPTIONS",
+		"allowHeaders": "Origin,Content-Type,X-Auth-Token,X-Requested-With,Accept,Authorization,X-CSRF-TOKEN,X-Socket-Id"
+	}
+}

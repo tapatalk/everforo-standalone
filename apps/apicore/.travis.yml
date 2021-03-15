@@ -1,0 +1,22 @@
+language: php
+dist: trusty
+sudo: false
+
+php:
+  - '7.1'
+  - '7.2'
+
+before_script:
+  - travis_retry composer self-update
+
+install:
+  - travis_retry composer install --no-suggest --prefer-dist -n -o
+
+script:
+  - cp .env.example .env
+  - vendor/bin/phpunit
+
+after_script:
+  - ls -alh storage/logs
+  - cat storage/logs/lumen.log
+  - echo 'DONE!'

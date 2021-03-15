@@ -1,0 +1,81 @@
+version: "3.8"
+services:
+
+  web:
+    networks: 
+      - efe
+    image: hansen1416/ttg2-web:1.0
+    # ports: 
+    #   - 8003:8003
+    volumes:
+      - ./apps/web:/app
+    working_dir: /app
+    command: ["npm", "run", "serve"]
+
+  redis:
+    networks:
+      - efe
+    image: redis:6.0-rc1-alpine
+
+  apicore:
+    depends_on:
+      - redis
+    networks:
+      - efe
+    env_file:
+      - .env
+    image: hansen1416/ef-apicore
+    volumes:
+      - ./apps/apicore:/app
+
+  apiprivacy:
+    depends_on:
+      - redis
+    networks:
+      - efe
+    env_file:
+      - .env
+    image: hansen1416/ef-apiprivacy
+    volumes:
+      - ./apps/apiprivacy:/app
+
+  apiflask:
+    networks:
+      - efe
+    environment:
+      FLASK_ENV: development
+    image: hansen1416/ef-apiflask
+    volumes:
+      - ./apps/apiflask/app:/app
+
+  echoserver:
+    depends_on:
+      - redis
+    networks:
+      - efe
+    environment:
+      NODE_ENV: production
+    image: hansen1416/ef-echoserver
+
+  nginxproxy:
+    depends_on:
+      - apicore
+      - apiflask
+      - apiprivacy
+      - echoserver
+      - web
+    networks:
+      - efe
+    image: hansen1416/ef-nginxproxy
+    ports:
+      - "80:80"
+      - "443:443"
+
+  ipfs:
+    networks:
+      - efe
+    image: ipfs/go-ipfs:master-2020-12-09-766f4de
+
+networks:
+  efe:
+    driver: bridge

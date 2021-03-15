@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+
+  apicore:
+    networks:
+      - efnet
+    env_file:
+      - .env
+    image: everforo/standalone-apicore:1.2.6
+    deploy:
+      replicas: 2
+    ports:
+      - "80:80"
+      - "443:443"
+
+x-aws-vpc:
+  ${ECS_VPC_ID}
+
+networks:
+  efnet:
+    driver: overlay

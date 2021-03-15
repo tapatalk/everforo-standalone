@@ -1,0 +1,9 @@
+FROM webdevops/php-nginx:7.3-alpine
+
+ENV WEB_DOCUMENT_ROOT="/app/public"
+
+COPY . /app/
+
+RUN rm -rf /app/storage/logs/lumen.log /app/tests /app/script
+RUN chmod -R 777 /app/storage
+

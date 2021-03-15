@@ -1,0 +1,10 @@
+vendor/
+composer.lock
+.DS_Store
+.idea/*
+.idea/
+NOTES.md
+.history/*
+.vscode/*
+tickets/*
+.phpunit-watcher.yml

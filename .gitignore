@@ -1,0 +1,10 @@
+venv
+.idea
+.vscode
+.env
+
+/.vagrant
+/storage
+/mysql-dump
+dump.rdb
+.secret*

@@ -1,0 +1,14 @@
+FROM webdevops/php-nginx:7.3-alpine
+
+RUN apk add gmp-dev
+
+RUN docker-php-ext-install gmp
+
+ENV WEB_DOCUMENT_ROOT="/app/public"
+
+COPY nginx.conf/1-echo.conf /opt/docker/etc/nginx/vhost.common.d/
+COPY . /app/
+COPY supervisor.conf/laravel-echo-server.conf /opt/docker/etc/supervisor.d/
+
+RUN rm -rf /app/storage/logs/lumen.log /app/tests /app/script
+RUN chmod -R 777 /app/storage

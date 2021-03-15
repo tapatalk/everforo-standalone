@@ -1,0 +1,84 @@
+version: '3.8'
+services:
+  redis:
+    networks:
+      - efnet
+    image: everforo/stage-redis:1.2.6
+    deploy:
+      replicas: 1
+      # restart_policy:
+      #   condition: on-failure
+  apicore:
+    depends_on:
+      - redis
+    networks:
+      - efnet
+    env_file:
+      - .env
+    image: everforo/standalone-apicore:1.4.8
+    deploy:
+      replicas: 3
+      # restart_policy:
+      #   condition: on-failure
+  apiflask:
+    depends_on:
+      - redis
+    networks:
+      - efnet
+    environment:
+      FLASK_ENV: production
+    image: everforo/standalone-apiflask:1.2.1
+    deploy:
+      replicas: 4
+  apiprivacy:
+    depends_on:
+      - redis
+    networks:
+      - efnet
+    env_file:
+      - .env
+    image: everforo/standalone-apiprivacy:1.2.1
+    deploy:
+      replicas: 2
+  echoserver:
+    depends_on:
+      - redis
+    networks:
+      - efnet
+    environment:
+      NODE_ENV: production
+    image: everforo/standalone-echoserver:1.2.2
+    # ports:
+    #   - "6001:6001"
+    deploy:
+      replicas: 2
+      # restart_policy:
+      #   condition: on-failure
+  nginxproxy:
+    depends_on:
+      - apicore
+      - apiflask
+      - echoserver
+      - apiprivacy
+    networks:
+      - efnet
+    image: everforo/standalone-nginxproxy:1.4.3
+    ports:
+      - "80:80"
+      - "443:443"
+    deploy:
+      replicas: 2
+
+  ipfs:
+    networks:
+      - efnet
+    image: ipfs/go-ipfs:master-2020-12-09-766f4de
+    deploy:
+      replicas: 3
+
+x-aws-vpc:
+  vpc-0368b3ffe6133ff90
+
+networks:
+  efnet:
+    driver: overlay

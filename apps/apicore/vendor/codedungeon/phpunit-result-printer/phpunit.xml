@@ -1,0 +1,16 @@
+<phpunit 	bootstrap="vendor/autoload.php"
+            colors="true"
+            convertErrorsToExceptions="true"
+            convertNoticesToExceptions="true"
+            convertWarningsToExceptions="true"
+            printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer"
+            stopOnFailure="true">
+            <testsuites>
+                <testsuite name="Unit Tests">
+                    <directory>tests</directory>
+                </testsuite>
+                <testsuite name="Tickets">
+                    <directory>tickets</directory>
+                </testsuite>
+            </testsuites>
+</phpunit>

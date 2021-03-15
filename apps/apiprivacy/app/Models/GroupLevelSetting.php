@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class GroupLevelSetting extends Model
+{
+    use SoftDeletes;
+
+    protected $table = 'group_level_setting';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'group_id','visibility','joining'
+        ];
+}
